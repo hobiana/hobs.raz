@@ -30,10 +30,11 @@ export const Services: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((service, index) => (
-            <div
+          {SERVICES.map((service) => (
+            <a
               key={service.id}
-              className="group relative p-8 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10"
+              href="#contact"
+              className="group relative block p-8 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/50 to-transparent dark:from-cyan-500/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
 
@@ -70,7 +71,7 @@ export const Services: React.FC = () => {
                   <ArrowRight size={16} />
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

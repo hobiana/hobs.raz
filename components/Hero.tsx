@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { ArrowDown, Github, Linkedin, Mail, Terminal } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, FileUser } from "lucide-react";
+import { USER } from "../constants";
+import { getExperienceYears } from "@/helper/utils";
 
 export const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState("Hobiana T. Razakanaivo");
+  const [experience, setExperience] = useState("");
   const finalText = "Hobiana T. Razakanaivo";
+
+  useEffect(() => {
+    setExperience(getExperienceYears());
+  }, [getExperienceYears]);
 
   // Hacker Text Decode Effect
   useEffect(() => {
@@ -68,12 +75,13 @@ export const Hero: React.FC = () => {
           className="text-xl md:text-2xl text-slate-700 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed font-light animate-slide-up opacity-0"
           style={{ animationDelay: "0.3s" }}
         >
-          Senior Software Engineer architecting{" "}
+          Senior Software Engineer with {experience} years of experience,
+          shaping high-performance applications with clean and{" "}
           <span className="text-cyan-700 dark:text-cyan-400 font-medium relative inline-block group">
-            <span className="relative z-10">digital realities</span>
+            <span className="relative z-10">thoughtful engineering</span>
             <span className="absolute bottom-0 left-0 w-full h-1 bg-cyan-500/30 -skew-x-12 group-hover:h-full transition-all duration-300 ease-out -z-0"></span>
-          </span>{" "}
-          with Next.js & AI.
+          </span>
+          .
         </p>
 
         <div
@@ -81,28 +89,29 @@ export const Hero: React.FC = () => {
           style={{ animationDelay: "0.5s" }}
         >
           <SocialLink
-            href="#"
+            href={USER.socials.github}
             icon={<Github size={20} />}
             label="GitHub"
             delay={0}
           />
           <SocialLink
-            href="#"
+            href={USER.socials.linkedin}
             icon={<Linkedin size={20} />}
             label="LinkedIn"
             delay={100}
           />
           <SocialLink
-            href="mailto:hobianarazakanaivo@gmail.com"
+            href={`mailto:${USER.email}`}
             icon={<Mail size={20} />}
             label="Email"
             delay={200}
           />
           <SocialLink
-            href="#"
-            icon={<Terminal size={20} />}
+            href="#contact"
+            icon={<FileUser size={20} />}
             label="Resume"
             delay={300}
+            target="_self"
           />
         </div>
       </div>
@@ -119,17 +128,22 @@ export const Hero: React.FC = () => {
   );
 };
 
-const SocialLink: React.FC<{
+export const SocialLink: React.FC<{
   href: string;
   icon: React.ReactNode;
   label: string;
   delay: number;
-}> = ({ href, icon, label, delay }) => (
+  download?: boolean;
+  target?: string;
+}> = ({ href, icon, label, delay, download, target = "_blank" }) => (
   <a
     href={href}
+    download={download}
     className="relative group p-4"
     aria-label={label}
     style={{ transitionDelay: `${delay}ms` }}
+    target={target}
+    rel="noopener noreferrer"
   >
     <div className="absolute inset-0 bg-white/50 dark:bg-slate-800 rounded-xl rotate-0 group-hover:rotate-12 transition-transform duration-300 border border-slate-200 dark:border-white/5 shadow-sm" />
     <div className="absolute inset-0 bg-cyan-500/20 rounded-xl rotate-0 group-hover:-rotate-12 transition-transform duration-300 opacity-0 group-hover:opacity-100" />

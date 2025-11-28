@@ -15,12 +15,28 @@ export interface Service {
   icon: any; // Using 'any' for Lucide icon components to avoid complex type imports here
 }
 
+export interface User {
+  email: string;
+  socials: {
+    github: string;
+    linkedin: string;
+  };
+}
+
 export interface Experience {
   id: string;
   role: string;
   company: string;
   period: string;
   description: string[];
+}
+
+export interface Education {
+  id: string;
+  degree: string;
+  institution: string;
+  period: string;
+  description: string;
 }
 
 export interface ChatMessage {

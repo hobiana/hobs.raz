@@ -1,4 +1,5 @@
-import { Project, Experience, Service } from "./types";
+import { getExperienceYears } from "./helper/utils";
+import { Project, Experience, Service, User, Education } from "./types";
 import {
   Code,
   Layers,
@@ -12,9 +13,18 @@ import {
 export const NAV_LINKS = [
   { name: "About", href: "#about" },
   { name: "Stack", href: "#stack" },
-  { name: "Projects", href: "#projects" },
+  { name: "Services", href: "#services" },
   { name: "Experience", href: "#experience" },
+  { name: "Contact", href: "#contact" },
 ];
+
+export const USER: User = {
+  email: "hobianarazakanaivo@gmail.com",
+  socials: {
+    github: "https://github.com/hobiana",
+    linkedin: "https://www.linkedin.com/in/t-hobiana-razakanaivo-616154160/",
+  },
+};
 
 export const EXPERIENCE: Experience[] = [
   {
@@ -43,11 +53,20 @@ export const EXPERIENCE: Experience[] = [
     id: "3",
     role: "Fullstack Developer",
     company: "BICI",
-    period: "December 2017 – August 2019",
+    period: "Dec 2017 – Aug 2019",
     description: [
       "Developed an integrated information system for payroll, stock, HR, and activity management.",
       "Led junior developers and worked on advanced SQL optimization.",
       "Built a back-office application for a mobile tourist app.",
+    ],
+  },
+  {
+    id: "4",
+    role: "Fullstack Developer",
+    company: "Freelancer",
+    period: "Sept 2017 – Feb 2018",
+    description: [
+      "Developed a web application allowing users to manage orders, inventory, and equipment rental availability through an intuitive calendar",
     ],
   },
 ];
@@ -59,12 +78,10 @@ export const TECH_STACK = [
     skills: [
       "JavaScript",
       "TypeScript",
-      "Python",
+      "Python, Django",
       "Java",
-      "React.js",
-      "Next.js",
+      "React.js, Next.js",
       "NestJS",
-      "Django",
     ],
   },
   {
@@ -79,9 +96,8 @@ export const TECH_STACK = [
       "Git",
       "VS Code",
       "Vite.js",
-      "Redux",
-      "Jest",
-      "Vitest",
+      "Redux, RTK",
+      "Jest, Vitest",
       "React Testing Library",
       "Azure DevOps",
     ],
@@ -91,13 +107,11 @@ export const TECH_STACK = [
     icon: Zap,
     skills: [
       "REST APIs",
-      "GraphQL",
       "TypeORM",
       "Hibernate",
       "Storybook",
       "Highcharts",
-      "Contentful",
-      "Strapi",
+      "GraphQL",
     ],
   },
 ];
@@ -105,50 +119,97 @@ export const TECH_STACK = [
 export const SERVICES: Service[] = [
   {
     id: "1",
-    title: "System Architecture",
+    title: "Frontend Development",
     description:
-      "Designing fault-tolerant, scalable distributed systems that handle millions of requests. I turn complex requirements into robust technical blueprints.",
+      "Building intuitive, high-performance, and responsive user interfaces with a focus on user experience and modern web standards.",
     features: [
-      "Microservices Strategy",
-      "Cloud Infrastructure (AWS/GCP)",
-      "Database Design",
-      "System Security",
+      "React.js & Next.js",
+      "TypeScript & JavaScript",
+      "Responsive Design & CSS3",
+      "Component Libraries (Storybook)",
+    ],
+    icon: Code,
+  },
+  {
+    id: "2",
+    title: "Backend Development",
+    description:
+      "Developing robust and scalable backend systems and APIs to power web applications.",
+    features: [
+      "NestJS (Node.js) & Django (Python)",
+      "REST & GraphQL APIs",
+      "Database Design & Management",
+      "Authentication & Security",
     ],
     icon: Server,
   },
   {
-    id: "2",
-    title: "Full-Stack Development",
+    id: "3",
+    title: "Full-Stack Solutions",
     description:
-      "End-to-end application development with a focus on performance and user experience. From database to pixel-perfect UI.",
+      "Delivering complete, end-to-end web applications, from initial architecture and database design to final deployment.",
     features: [
-      "React & Next.js Ecosystem",
-      "Node.js/Go API Development",
-      "Real-time Systems",
+      "Frontend & Backend Integration",
+      "Application Architecture",
       "Performance Optimization",
+      "E-commerce & Data-driven Apps",
     ],
     icon: Layers,
   },
   {
-    id: "3",
-    title: "AI & LLM Integration",
+    id: "4",
+    title: "DevOps & CI/CD",
     description:
-      "Bridging the gap between traditional software and generative AI. Integrating Gemini/OpenAI models into production workflows.",
+      "Implementing continuous integration and deployment pipelines to automate testing and releases, ensuring faster and more reliable software delivery.",
     features: [
-      "RAG Implementation",
-      "AI Agents & Assistants",
-      "Vector Databases",
-      "Prompt Engineering",
+      "Azure DevOps",
+      "GitLab Actions",
+      "Docker & Containerization",
+      "Automated Workflows",
     ],
-    icon: Cpu,
+    icon: Terminal,
   },
 ];
 
-export const SYSTEM_INSTRUCTION = `You are the AI Assistant for a Senior Software Engineer's portfolio named 'Hobiana'.
-Your goal is to answer questions about Hobiana's experience, skills, and projects based on the provided context.
-- Be professional but witty and futuristic in your tone.
-- Keep answers concise (under 3 sentences unless asked for detail).
-- If asked about tech stack, mention React, NestJS, and Python.
-- If asked about contact, suggest the contact form or email hobianarazakanaivo@gmail.com.
-- Do not make up facts not in the context.
+export const EDUCATION: Education[] = [
+  {
+    id: "1",
+    degree: "Master's degree",
+    institution: "Nice Sophia Antipolis",
+    period: "2019",
+    description: "System Integration and Applied Statistics   ",
+  },
+  {
+    id: "2",
+    degree: "Bachelor’s degree in computer science  ",
+    institution: "IT University",
+    period: "2017",
+    description: "",
+  },
+];
+
+export const SYSTEM_INSTRUCTION = `You are the AI assistant for Hobiana Razakanaivo, a Senior Full-Stack Engineer. Your persona is professional, slightly witty, and helpful.
+
+Your primary goal is to answer questions from potential employers or collaborators about Hobiana's skills, experience, and projects. Use the information from his CV as your knowledge base.
+
+Key points to highlight:
+- **Experience:** Mention his ${getExperienceYears()} years of experience in building high-performance web applications.
+- **Core Stack:** Emphasize his expertise in **React/Next.js** for the frontend, and **NestJS (Node.js)** and **Django (Python)** for the backend.
+- **Databases:** He has experience working with **PostgreSQL**, **MongoDB**, **MySQL**, and **SQL Server** databases.
+- **Tools:** He is proficient in **Git**, **VS Code**, **Vite.js**, **Redux**, **RTK**, **Jest**, **Vitest**, **React Testing Library**, **Azure DevOps**, **TypeORM**, **Storybook**, **Highcharts**, **GraphQL**.
+- **APIs:** He has experience with **REST APIs** and **GraphQL**.
+- **Testing:** He has experience with **Jest**, **Vitest**, and **React Testing Library**.
+- **DevOps:** He has experience with **Azure DevOps** and **GitLab Actions**.
+- **Frontend:** He can build intuitive, high-performance, and responsive user interfaces with a focus on user experience and modern web standards: **React.js**, **Next.js** with tools like **Redux**, **RTK**, **Storybook**, **Zod**, **Zustand**, ** React hook Form**, **Shadcn UI**.
+- **Backend:** He can develop robust and scalable backend systems and APIs to power web applications: **Nest Js (Node.js)** and **Django (Python)**. He already did Java but long time ago.
+- **Full-Stack Capability:** He can handle the entire development lifecycle, from UI/UX implementation to backend architecture and database design.
+- **Professional Values:** He is passionate about clean code, performance optimization, and collaborative teamwork.
+
+Interaction guidelines:
+- Keep your answers concise and to the point (2-3 sentences is ideal).
+- If you don't know an answer, say so. Do not invent details.
+- When asked for contact information, direct users to the contact section on the page or provide his email: ${
+  USER.email
+}.
+- Maintain a positive and engaging tone.
 `;

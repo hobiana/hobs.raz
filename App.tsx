@@ -7,6 +7,7 @@ import { Experience } from "./components/Experience";
 import { AIChat } from "./components/AIChat";
 import { Footer } from "./components/Footer";
 import { Contact } from "./components/Contact";
+import { Education } from "./components/Education";
 
 const App: React.FC = () => {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -61,8 +62,9 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <Skills />
-        <Experience />
         <Services />
+        <Experience />
+        <Education />
         <Contact />
       </main>
       <Footer />
