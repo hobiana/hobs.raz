@@ -78,16 +78,17 @@ export const TECH_STACK = [
     skills: [
       "JavaScript",
       "TypeScript",
+      "React.js, Next.js",
+      "NestJS (Node Js)",
       "Python, Django",
       "Java",
-      "React.js, Next.js",
-      "NestJS",
+      "etc...",
     ],
   },
   {
     name: "Databases",
     icon: Database,
-    skills: ["PostgreSQL", "MongoDB", "Oracle", "MySQL", "SQL Server"],
+    skills: ["PostgreSQL", "MongoDB", "MySQL", "SQL Server", "etc..."],
   },
   {
     name: "Tools & Technologies",
@@ -100,6 +101,7 @@ export const TECH_STACK = [
       "Jest, Vitest",
       "React Testing Library",
       "Azure DevOps",
+      "etc...",
     ],
   },
   {
@@ -111,7 +113,7 @@ export const TECH_STACK = [
       "Hibernate",
       "Storybook",
       "Highcharts",
-      "GraphQL",
+      "etc...",
     ],
   },
 ];
