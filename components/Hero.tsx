@@ -61,7 +61,7 @@ export const Hero: React.FC = () => {
         >
           <div className="w-2 h-2 rounded-full bg-cyan-600 dark:bg-cyan-500 animate-pulse" />
           <span className="text-cyan-800 dark:text-cyan-500 font-mono text-xs tracking-widest uppercase">
-            System Online • v2.0.4
+            Welcome to my profile
           </span>
         </div>
 

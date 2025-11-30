@@ -106,7 +106,7 @@ export const AIChat: React.FC = () => {
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
             <h3 className="text-cyan-400 font-mono text-sm font-bold tracking-wider">
-              AI ASSISTANT V2.5
+              AI ASSISTANT
             </h3>
           </div>
           <button
