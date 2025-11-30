@@ -20,6 +20,7 @@ export const NAV_LINKS = [
 
 export const USER: User = {
   email: "hobianarazakanaivo@gmail.com",
+  resume: "Hobiana_Razakanaivo_CV_English.pdf",
   socials: {
     github: "https://github.com/hobiana",
     linkedin: "https://www.linkedin.com/in/t-hobiana-razakanaivo-616154160/",

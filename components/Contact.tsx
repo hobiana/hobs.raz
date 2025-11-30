@@ -38,8 +38,8 @@ export const Contact: React.FC = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/content/Hobiana_Razakanaivo_CV_English.pdf";
-    link.download = "Hobiana_Razakanaivo_CV_English.pdf";
+    link.href = `/hobs.raz/content/${USER.resume}`;
+    link.download = USER.resume;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

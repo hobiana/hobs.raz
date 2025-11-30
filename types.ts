@@ -17,6 +17,7 @@ export interface Service {
 
 export interface User {
   email: string;
+  resume: string;
   socials: {
     github: string;
     linkedin: string;
