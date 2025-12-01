@@ -8,9 +8,8 @@ import {
   Sparkles,
   Loader2,
 } from "lucide-react";
-import { createChatSession } from "../services/gemini";
+import { sendMessage } from "../services/gemini";
 import { ChatMessage } from "../types";
-import { GenerateContentResponse } from "@google/genai";
 
 export const AIChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +23,7 @@ export const AIChat: React.FC = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const chatSession = useRef(createChatSession());
+  const sessionId = useRef(Date.now().toString());
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -36,7 +35,7 @@ export const AIChat: React.FC = () => {
   }, [messages, isOpen]);
 
   const handleSend = async () => {
-    if (!input.trim() || !chatSession.current) return;
+    if (!input.trim()) return;
 
     const userMsg: ChatMessage = {
       id: Date.now().toString(),
@@ -50,12 +49,7 @@ export const AIChat: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const result = await chatSession.current.sendMessage({
-        message: userMsg.text,
-      });
-      const responseText =
-        (result as GenerateContentResponse).text ||
-        "I'm having trouble connecting to the neural network.";
+      const responseText = await sendMessage(userMsg.text, sessionId.current);
 
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),

@@ -1,19 +1,18 @@
-import { GoogleGenAI, Chat } from "@google/genai";
-import { SYSTEM_INSTRUCTION } from "../constants";
-
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
-
-// Initialize client only if key exists to avoid immediate errors,
-// though actual calls will fail if missing.
-const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
-
-export const createChatSession = (): Chat | null => {
-  if (!ai) return null;
-
-  return ai.chats.create({
-    model: "gemini-2.5-flash",
-    config: {
-      systemInstruction: SYSTEM_INSTRUCTION,
+export const sendMessage = async (
+  message: string,
+  sessionId: string
+): Promise<string> => {
+  const response = await fetch("/gemini", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({ message, sessionId }),
   });
+
+  if (!response.ok) {
+    throw new Error("Failed to send message");
+  }
+
+  return response.text();
 };
