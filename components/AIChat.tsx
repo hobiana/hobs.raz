@@ -10,8 +10,10 @@ import {
 } from "lucide-react";
 import { sendMessage } from "../services/gemini";
 import { ChatMessage } from "../types";
+import { useSessionId } from "@/hooks/session";
 
 export const AIChat: React.FC = () => {
+  const sessionId = useSessionId();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -23,7 +25,6 @@ export const AIChat: React.FC = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const sessionId = useRef(Date.now().toString());
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -49,7 +50,7 @@ export const AIChat: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const responseText = await sendMessage(userMsg.text, sessionId.current);
+      const responseText = await sendMessage(userMsg.text, sessionId);
 
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
@@ -65,7 +66,7 @@ export const AIChat: React.FC = () => {
         {
           id: (Date.now() + 1).toString(),
           role: "model",
-          text: "Error: Connection interrupted. Please check your API key.",
+          text: "Sorry, an error occurred. Please try again later.",
           timestamp: Date.now(),
         },
       ]);
